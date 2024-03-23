@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Test</title>
+  
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+   
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="container" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
+      <div class="stats">
+        <p>Time: <span id="timer">0s</span></p>
+        <p>Mistakes: <span id="mistakes">0</span></p>
+      </div>
+      <div
+        id="quote"
+        onmousedown="return false"
+        onselectstart="return false"
+      ></div>
+      <textarea
+        rows="3"
+        id="quote-input"
+        placeholder="Type here when the test starts.."
+      ></textarea>
+      <button id="start-test" onclick="startTest()">Start Test</button>
+      <button id="stop-test" onclick="displayResult()">Stop Test</button>
+      <div class="result">
+        <h3>Result</h3>
+        <div class="wrapper">
+          <p>Accuracy: <span id="accuracy"></span></p>
+          <p>Speed: <span id="wpm"></span></p>
+        </div>
+      </div>
+    </div>
+  
+    <script src="script.js"></script>
+    <script>
+      let startY;
+      let container = document.getElementById('container');
+
+      function handleTouchStart(event) {
+        startY = event.touches[0].clientY;
+      }
+
+      function handleTouchMove(event) {
+        if (!startY) {
+          return;
+        }
+
+        let y = event.touches[0].clientY;
+
+        let distance = y - startY;
+
+        // If the user has scrolled down (positive distance) more than 100 pixels, reload the page
+        if (distance > 100) {
+          window.location.reload();
+        }
+
+        startY = null;
+      }
+    </script>
+    
+  </body>
+</html>
