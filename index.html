@@ -39,31 +39,7 @@
     </div>
   
     <script src="script.js"></script>
-    <script>
-      let startY;
-      let container = document.getElementById('container');
+   
 
-      function handleTouchStart(event) {
-        startY = event.touches[0].clientY;
-      }
-
-      function handleTouchMove(event) {
-        if (!startY) {
-          return;
-        }
-
-        let y = event.touches[0].clientY;
-
-        let distance = y - startY;
-
-        // If the user has scrolled down (positive distance) more than 100 pixels, reload the page
-        if (distance > 100) {
-          window.location.reload();
-        }
-
-        startY = null;
-      }
-    </script>
-    
   </body>
 </html>
